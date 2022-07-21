@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--############################## VIEWS ##############################-->
+    <record id="library_book_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Library Book List Inherit</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="novobi_library_book.library_book_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="isbn" string='ISBN'/>
+                <field name="short_name" string='Short Name'/>
+                <field name="status" string='Status'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="library_book_view_search_inherit" model="ir.ui.view">
+        <field name="name">Library Book Search Inherit</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="novobi_library_book.library_book_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="isbn"/>
+                <separator/>
+                <filter string="Without Release Date" name="without_date_release" domain="[('date_release','=',False)]" />
+                <group string="Group By">
+                    <filter string="Status" name="status" context="{'group_by': 'status'}" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="library_book_view_form_inherit" model="ir.ui.view">
+        <field name="name">Library Book Form Inherit</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="novobi_library_book.library_book_view_form"/>
+        <field name="arch" type="xml">
+            <!-- add Lease button to form view -->
+            <header>
+                <button name="lease_button" string="Lease" type="object" class="oe_highlight" />
+            </header>
+            <xpath expr="//field[@name='author_ids']" position="after">
+                <field name="isbn" />
+                <field name="status" />
+            </xpath>
+            <xpath expr="//field[@name='date_release']" position="after">
+                <field name="location_id" widget="many2one_tags"/>
+                <field name="current_borrower_id" widget="many2one_tags"/>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

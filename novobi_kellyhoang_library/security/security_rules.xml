@@ -1,0 +1,13 @@
+<odoo>
+
+    <record id="library_book_internal_user_rule" model="ir.rule">
+        <field name="name">Internal Users: only see books that are not lost</field>
+        <field name="model_id" ref="novobi_library_book.model_library_book"/>
+        <field name="perm_read" eval="True"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">
+            [('status', '!=', 'lost')]
+        </field>
+    </record>
+
+</odoo>
