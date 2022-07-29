@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<odoo>
+    <template id="report_book_location">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <!-- Report header content -->
+                <div class="container">
+                    <div class="row bg-primary">
+                        <div class="col-3">Book</div>
+                        <div class="col-2">Status</div>
+                        <div class="col-3">Current Borrower</div>
+                        <div class="col-2">Return Date</div>
+                    </div>
+                
+                <t t-foreach="docs" t-as="o">
+                    <div class="row">
+                        <!-- Report row content -->
+                        <div class="col-3"> <h4><span t-field="o.name" /></h4></div>
+                        <div class="col-2"> <span t-field="o.status" /></div>
+                        <div class="col-3"> <span t-field="o.current_borrower_id" /></div>
+                        <div class="col-2"> <span t-field="o.return_date" t-options="{'widget': 'date'}"/></div>
+
+                        <t t-call="kelly_novobi_library_.report_book_location" />
+                    </div>
+                </t>
+                
+                <!-- Report footer content -->
+                <div class="row">
+                    <div class="col-3"><t t-out="len(docs)" /> Total </div>
+                </div>
+
+                </div> <!-- container -->
+            </div> <!-- page -->
+        </t>
+    </template>
+</odoo>

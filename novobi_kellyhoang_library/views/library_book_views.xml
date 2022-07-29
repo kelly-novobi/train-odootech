@@ -39,6 +39,8 @@
             <!-- add Lease button to form view -->
             <header>
                 <button name="lease_button" string="Lease" type="object" class="oe_highlight" />
+                <button name="lost_button" string="Mark as Lost" type="object" class="oe_highlight" />
+                <button name="available_button" string="Mark as Available" type="object" class="oe_highlight" />
             </header>
             <xpath expr="//field[@name='author_ids']" position="after">
                 <field name="isbn" />

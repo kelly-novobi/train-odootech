@@ -3,14 +3,35 @@
 
 <odoo>
     <!--############################## VIEWS ##############################-->
-    <record id="book_location_view_tree" model="ir.ui.view">
-        <field name="name">Book Location List</field>
+    <record id="book_location_view_form" model="ir.ui.view">
+        <field name="name">Location Form</field>
         <field name="model">book.location</field>
         <field name="arch" type="xml">
-            <tree>
-                <field name="name" />
-                <field name="total_available_books" />
-            </tree>
+            <form>
+                <header/>
+                <sheet>
+                    <group>
+                        <field name="name" attrs="{'required': True}"/>
+                        <field name="total_available_books" sting="Total Available Books"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="book_location_view_tree" model="ir.ui.view">
+        <field name="name">Book Locations</field>
+        <field name="model">book.location</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <tree>
+                        <field name="name" />
+                        <field name="total_available_books" />
+                        <!-- <field name="total_books" /> -->
+                    </tree>
+                </sheet>
+            </form>
         </field>
     </record>
 

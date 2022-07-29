@@ -26,7 +26,8 @@
         'security/library_book_groups.xml',
         'security/ir.model.access.csv',
         # ============================== REPORT =============================
-        
+        'report/book_location_reports.xml',
+        'report/book_location_templates.xml',
         # ============================== WIZARDS =============================  
     ],
     "installable": True,

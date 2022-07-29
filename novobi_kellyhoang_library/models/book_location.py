@@ -4,10 +4,22 @@ class BookLocation(models.Model):
     _name = 'book.location'
     _description = 'Book Location'
 
-    name = fields.Char(string='The name of each bookcase', required=True)
-    book_ids = fields.One2many('library.book','location_id',string='Books stored in this location')
-    total_available_books = fields.Integer('The number of available books stored in this location')
-    total_books = fields.Integer(compute="_compute_total_books")
+    name = fields.Char(
+        string='The name of each bookcase',
+        required=True,
+    )
+    book_ids = fields.One2many(
+        'library.book',
+        'location_id',
+        string='Books stored in this location',
+    )
+    total_available_books = fields.Integer(
+        string ='The number of available books stored in this location',
+    )
+    total_books = fields.Integer(
+        string = 'Total books',
+        # compute="_compute_total_books",
+    )
                          
     def name_get(self):
         """ This method used to customize display name of the record """
@@ -17,7 +29,13 @@ class BookLocation(models.Model):
             result.append((record.id, rec_name))
         return result
 
-    @api.depends('book_ids')
-    def _compute_total_books(self):
-        for record in self:
-            record.total_books = len(record.book_ids)
+
+    # def action_report(self):
+    #     return self.env.ref('novobi_kellyhoang_library.action_report_books').report_action(self)
+
+
+    # @api.depends('book_ids')
+    # def _compute_total_books(self):
+        # self.total_books = 11
+        # for record in self:
+        #     self.total_books = len(record.book_ids)
