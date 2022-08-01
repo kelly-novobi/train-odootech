@@ -17,8 +17,7 @@ class BookLocation(models.Model):
         string ='The number of available books stored in this location',
     )
     total_books = fields.Integer(
-        string = 'Total books',
-        # compute="_compute_total_books",
+        compute="_compute_total_books",
     )
                          
     def name_get(self):
@@ -34,8 +33,7 @@ class BookLocation(models.Model):
     #     return self.env.ref('novobi_kellyhoang_library.action_report_books').report_action(self)
 
 
-    # @api.depends('book_ids')
-    # def _compute_total_books(self):
-        # self.total_books = 11
-        # for record in self:
-        #     self.total_books = len(record.book_ids)
+    @api.depends('book_ids')
+    def _compute_total_books(self):
+        for record in self:
+            self.total_books = len(record.book_ids)
