@@ -16,7 +16,4 @@ class LeaseBook(models.TransientModel):
             wiz.lease_book_id.ensure_one()
             wiz.lease_book_id.current_borrower_id = wiz.borrower_id
             wiz.lease_book_id.status = 'borrowed'
-            
-
-
-
+                

@@ -15,7 +15,8 @@
     "excludes": [],
     "data": [
         # ============================== DATA =================================
-
+        'data/ir_cron_data.xml',
+        
         # ============================== VIEWS ================================
         'wizards/lease_book_wizard.xml',
         'views/library_book_views.xml',

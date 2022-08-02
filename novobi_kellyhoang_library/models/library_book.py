@@ -1,6 +1,8 @@
+from re import S
 from odoo import api, models, fields
 from datetime import date
 from odoo.exceptions import ValidationError
+from odoo.http import request
 
 class LibraryBook(models.Model):
     _name = 'library.book'
@@ -35,8 +37,19 @@ class LibraryBook(models.Model):
         string='Location',
         help='The location (shelf) where we store the book',
     )
+    book_url = fields.Char(
+        string="Book's URL",
+    )
 
+    def action_url(self):
+        self.book_url = 'https://www.odoo.com/documentation/15.0/developer/reference/backend/orm.html'
 
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': self.book_url,
+        }
+        
     def lease_button(self):
         context = dict(self.env.context)
         context['default_lease_book_id'] = self.id
@@ -105,4 +118,5 @@ class LibraryBook(models.Model):
         if self.date_release and self.date_release > today:
             self.status = 'not_published'
          
-    
+    def send_late_return_reminder(self):
+        print("Executing CRON")
