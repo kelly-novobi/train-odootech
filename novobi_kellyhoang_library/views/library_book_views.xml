@@ -41,7 +41,7 @@
                 <button name="lease_button" string="Lease" type="object" class="oe_highlight" />
                 <button name="lost_button" string="Mark as Lost" type="object" class="oe_highlight" />
                 <button name="available_button" string="Mark as Available" type="object" class="oe_highlight" />
-                <button name="action_url" string="New Page of Book" type="object" class="oe_highlight" />
+                <button name="action_url" string="New Page of Book" type="object" class="oe_stat_button" />
             </header>
             <xpath expr="//field[@name='author_ids']" position="after">
                 <field name="isbn" />

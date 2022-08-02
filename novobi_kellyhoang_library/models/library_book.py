@@ -42,12 +42,22 @@ class LibraryBook(models.Model):
     )
 
     def action_url(self):
-        self.book_url = 'https://www.odoo.com/documentation/15.0/developer/reference/backend/orm.html'
+        # self.book_url = 'https://www.odoo.com/documentation/15.0/developer/reference/backend/orm.html'
 
+        # return {
+        #     'type': 'ir.actions.act_url',
+        #     'target': 'new',
+        #     'url': self.book_url,
+        # }
+        
+        self.ensure_one()
         return {
-            'type': 'ir.actions.act_url',
-            'target': 'new',
-            'url': self.book_url,
+            'type': 'ir.actions.act_window',
+            'name': 'Book',
+            'view_mode': 'tree',
+            'res_model': 'library.book',
+            'domain': [('book_id', '=', self.id)],
+            'context': "{'create': False}"
         }
         
     def lease_button(self):
