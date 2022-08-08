@@ -41,24 +41,7 @@ class LibraryBook(models.Model):
         string="Book's URL",
     )
 
-    def action_url(self):
-        # self.book_url = 'https://www.odoo.com/documentation/15.0/developer/reference/backend/orm.html'
-
-        # return {
-        #     'type': 'ir.actions.act_url',
-        #     'target': 'new',
-        #     'url': self.book_url,
-        # }
-        
-        self.ensure_one()
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Book',
-            'view_mode': 'tree',
-            'res_model': 'library.book',
-            'domain': [('book_id', '=', self.id)],
-            'context': "{'create': False}"
-        }
+    
         
     def lease_button(self):
         context = dict(self.env.context)
@@ -129,4 +112,26 @@ class LibraryBook(models.Model):
             self.status = 'not_published'
          
     def send_late_return_reminder(self):
+        SELECT * FROM library_book WHERE ;
+        
         print("Executing CRON")
+     
+        
+    def action_url(self):
+        # self.book_url = 'https://www.odoo.com/documentation/15.0/developer/reference/backend/orm.html'
+
+        # return {
+        #     'type': 'ir.actions.act_url',
+        #     'target': 'new',
+        #     'url': self.book_url,
+        # }
+        
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Book',
+            'view_mode': 'tree',
+            'res_model': 'library.book',
+            # 'domain': [('book_id', '=', self.id)],
+            'context': "{'create': False}"
+        }
